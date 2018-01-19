@@ -1,0 +1,1 @@
+double readSensor(double* temperature);
