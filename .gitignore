@@ -3,6 +3,9 @@
 .clang_complete
 .gcc-flags.json
 
+#sensitive files
+src/config.h
+
 #Eagle Backup files
 *.s#?
 *.b#?
