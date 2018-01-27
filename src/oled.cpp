@@ -1,8 +1,6 @@
 #include <U8g2lib.h>
 #include <Arduino.h>
 #include "config.h"
-//#include <iostream>
-//#include <string>
 /*
 Hacked from:
 https://github.com/olikraus/U8g2_Arduino.git
@@ -13,30 +11,7 @@ All rights reserved.
 See notice at end of file.
 */
 
-
-
 U8G2_SSD1306_128X64_NONAME_F_SW_I2C u8g2(U8G2_R0, /* clock=*/ SCL, /* data=*/ SDA, /* reset=*/ U8X8_PIN_NONE);   // All Boards without Reset of the Display
-
-
-void oled_thing(double* f){
-
-    // Convert f to string
-    char f_str[6];
-    snprintf(f_str, sizeof(f_str), "%g", *f); /* convert m to a string with two digits */
-
-    u8g2.firstPage();
-    do {
-
-      //u8g2.setFont(u8g2_font_logisoso32_tn);
-
-      u8g2.setFont(u8g2_font_courB18_tf); //15px height
-      u8g2.drawStr(0,32,"Temp:");
-      u8g2.drawStr(20,63,f_str);
-      u8g2.drawStr(100,63,"c");
-
-    } while ( u8g2.nextPage() );
-
-}
 
 void oled_display(const char* title, const char* message, const char* units){
 
@@ -77,5 +52,4 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
 STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
 */

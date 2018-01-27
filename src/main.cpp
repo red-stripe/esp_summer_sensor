@@ -14,17 +14,17 @@
 const char CompileDate[] = __DATE__ " " __TIME__;
 /* TO DO:-
 ~~oled screen cycle stats~~
-oled screen readable titles
+~~oled screen readable titles~~
 test OTA Update with real PSU
 test ip setup with real PSU
 test wifi setup with real PSU
 check temp i2c calls to HDC1080 +
 Actually understand how i2c block works
-Add MQTT
-change config.h in git to be a template
+~~Add MQTT~~
+~~change config.h in git to be a template~~
 ~~use modulars to do a timer for the screen~~
 Refactor pulse code and move to own cpp File
-Refactor oled to take a string instead of a double
+~~Refactor oled to take a string instead of a double~~
 Refactor termperature code to be more clear, all pointers all the time
 */
 /*
@@ -100,21 +100,29 @@ void loop() {
     Serial.print("_");
     Serial.println(pulseCount1_Wh);
 
+    char title[10];
+    char message[6];
+    char units[2];
     switch (screenCycle) {
         case 0:
-            oled_thing(&temperature);
-
+            snprintf(message, sizeof(message), "%g", temperature);
+            strcpy(title, "Temp:");
+            strcpy(units, "c");
             break;
         case 1:
-            oled_thing(&humidity);
+            snprintf(message, sizeof(message), "%g", humidity);
+            strcpy(title, "Humidity:");
+            strcpy(units, "%");
             break;
         case 2:
-            oled_display("test","12.50","!");
+            strcpy(title, "Power:");
+            strcpy(message, "12.35");
+            strcpy(units, "kWh");
             break;
-
         default:
             break;
     }
+    oled_display(title,message,units);
     screenCycle = (screenCycle + 1) % 3;
 
     char temp_str[6];

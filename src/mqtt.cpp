@@ -11,11 +11,6 @@ See notice at end of file.
 
 WiFiClient espClient;
 PubSubClient client(espClient);
-long lastMsg = 0;
-char msg[50];
-int value = 0;
-
-
 
 
 void callback(char* topic, byte* payload, unsigned int length) {
@@ -41,9 +36,9 @@ void mqtt_reconnect() {
     if (client.connect(MQTT_NAME, MQTT_USER, MQTT_PASSWORD)) {
       Serial.println("connected");
       // Once connected, publish an announcement...
-      client.publish("outTopic", "hello world");
+      //client.publish("outTopic", "hello world");
       // ... and resubscribe
-      client.subscribe("inTopic");
+      //client.subscribe("inTopic");
     } else {
       Serial.print("failed, rc=");
       Serial.print(client.state());
@@ -54,34 +49,17 @@ void mqtt_reconnect() {
   }
 }
 
-
 void mqtt_task(const char* topic, const char* message) {
 
   if (!client.connected()) { //check for disconnect
     mqtt_reconnect();
   }
   client.loop(); // check for incoming messages and keep alive server connection.
-
-  long now = millis();
-
-  if (millis() % 2000 == 0) { //this probably shouldn't be here
-      client.publish(topic, message);
-  }
-
-  if (now - lastMsg > 2000) {
-//    lastMsg = now;
-//    ++value;
-//    snprintf (msg, 75, "hello world #%ld", value);
-//    Serial.print("Publish message: ");
-//    Serial.println(msg);
-
-  }
+  client.publish(topic, message);
 }
 
 
 /*
-
-
 Copyright (c) 2008-2015 Nicholas O'Leary
 
 Permission is hereby granted, free of charge, to any person obtaining
@@ -102,5 +80,4 @@ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
 LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
 */
