@@ -6,24 +6,32 @@
 #include "ota.h"
 #include "temperature.h"
 #include "oled.h"
+#include "wifi.h"
+
 
 
 
 const char CompileDate[] = __DATE__ " " __TIME__;
 /* TO DO:-
-oled screen cycle stats
+~~oled screen cycle stats~~
 oled screen readable titles
-test OTA Update
-Add ip setup
-add wifi setup
-check temp i2c calls to HDC1080
+test OTA Update with real PSU
+test ip setup with real PSU
+test wifi setup with real PSU
+check temp i2c calls to HDC1080 +
 Actually understand how i2c block works
+Add MQTT
+change config.h in git to be a template
+~~use modulars to do a timer for the screen~~
+Refactor pulse code and move to own cpp File
+Refactor oled to take a string instead of a double
+Refactor termperature code to be more clear, all pointers all the time
 */
 /*
 
 GPIO0  - Program mode toggle switch
 GPIO2 - Freeish used in program mode
-GPIO4 - SDA
+GPIO4 - SDA  //SSD1306 & HDC1080
 GPIO5 - SCL
 GPIO12 - Free
 GPIO13 - Free
@@ -34,6 +42,8 @@ GPIO16 - Free
 
 volatile unsigned int pulseCount1_Wh  = 0;
 volatile unsigned int pulseCount1_kWh = 0;
+
+unsigned short screenCycle = 0;
 
 const long interval = 1000;
 unsigned long previousMillis = 0;
@@ -57,26 +67,29 @@ void setup() {
     Wire.begin(SDA,SCL);
     Serial.begin(115200);
     delay(300);
-    oled_begin();
-    //ota_setup();
+    oled_setup();
+    ota_setup();
+    wifi_setup();
     pinMode(14, INPUT);
     attachInterrupt(14, pulseCounter01, FALLING);
     Serial.println(CompileDate);
     Serial.println("Ready");
+
+    print_wifi_details();
 }
 
 void loop() {
 
-    unsigned long currentMillis = millis();
-    if(currentMillis - previousMillis >= interval) {
-        previousMillis = currentMillis;
+    wifi_task();
+    ota_task();
 
-    // put your main code here, to run repeatedly:
-    //ota_task();
+    if (millis() % 2000 == 0) {
+
     double temperature;
     double humidity;
 
     humidity = readSensor(&temperature);
+    // Optimise me by combining all the strings and doing one print
     Serial.print("Humid: ");
     Serial.print(humidity);
     Serial.print("  -  Temp: ");
@@ -86,10 +99,22 @@ void loop() {
     Serial.print("_");
     Serial.println(pulseCount1_Wh);
 
-    oled_thing(&temperature);
-    //delay(1000);
+    switch (screenCycle) {
+        case 0:
+            oled_thing(&temperature);
 
+            break;
+        case 1:
+            oled_thing(&humidity);
+            break;
+        case 2:
+            oled_display("test","12.50","!");
+            break;
 
+        default:
+            break;
+    }
+    screenCycle = (screenCycle + 1) % 3;
 
     }
 
