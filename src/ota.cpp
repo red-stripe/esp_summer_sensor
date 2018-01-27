@@ -4,6 +4,12 @@
 #include "ota.h"
 #include "config.h"
 
+/*
+Hacked from: https://github.com/platformio/platformio-examples.git
+platformio/platformio-examples/espressif/esp8266-arduino-ota
+Licensed under the Apache License 2.0
+*/
+
 void ota_setup() {
   ArduinoOTA.setHostname(NODE_NAME);
 
