@@ -7,7 +7,7 @@
 #include "temperature.h"
 #include "oled.h"
 #include "wifi.h"
-
+#include "mqtt.h"
 
 
 
@@ -70,6 +70,7 @@ void setup() {
     oled_setup();
     ota_setup();
     wifi_setup();
+    mqtt_setup();
     pinMode(14, INPUT);
     attachInterrupt(14, pulseCounter01, FALLING);
     Serial.println(CompileDate);
@@ -115,6 +116,15 @@ void loop() {
             break;
     }
     screenCycle = (screenCycle + 1) % 3;
+
+    char temp_str[6];
+    snprintf(temp_str, sizeof(temp_str), "%g", temperature);
+
+    char humid_str[6];
+    snprintf(humid_str, sizeof(humid_str), "%g", humidity);
+
+    mqtt_task(topic_temperature,temp_str);
+    mqtt_task(topic_humid,humid_str);
 
     }
 
