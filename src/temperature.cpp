@@ -4,18 +4,16 @@
 
 double readSensor(double* temperature)
 {
-    //this is definately wrong, check the datasheet for write calls
+
   //holds 2 bytes of data from I2C Line - sensor is HDC1080
   uint8_t Byte[4];
 
-  //holds the total contents of the temp register
-  uint16_t temp;
 
-  //holds the total contents of the humidity register
+  uint16_t temp;
   uint16_t humidity;
 
   //Point to device 0x40 (Address for HDC1080)
-  Wire.beginTransmission(si7021Addr);
+  Wire.beginTransmission(hdc1080Addr);
   //Point to register 0x00 (Temperature Register)
   Wire.write(0x00);
   //Relinquish master control of I2C line
@@ -26,7 +24,7 @@ double readSensor(double* temperature)
   delay(20);
 
   //Request four bytes from registers
-  Wire.requestFrom(0x40, 4);
+  Wire.requestFrom(hdc1080Addr, 4);
 
   delay(1);
 
