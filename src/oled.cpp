@@ -3,43 +3,79 @@
 #include "config.h"
 //#include <iostream>
 //#include <string>
+/*
+Hacked from:
+https://github.com/olikraus/U8g2_Arduino.git
+
+Copyright (c) 2016, olikraus@gmail.com
+All rights reserved.
+
+See notice at end of file.
+*/
+
 
 
 U8G2_SSD1306_128X64_NONAME_F_SW_I2C u8g2(U8G2_R0, /* clock=*/ SCL, /* data=*/ SDA, /* reset=*/ U8X8_PIN_NONE);   // All Boards without Reset of the Display
-uint8_t m = 24;
+
 
 void oled_thing(double* f){
-// trying to convert to double to a constant char for the oled display. its not really working.
-    char m_str[3];
-    double g = 23.43;
+
     // Convert f to string
     char f_str[6];
-    snprintf(f_str, sizeof(f_str), "%g", *f);
-    //Serial.println((double)(*f),2);
-    // //std.string g_str;
-    // //g_str.to_string(g);
-    // //String g_str = String(g,2);
-    // char result[32];
-    // //dtostrf(g, 5, 1, result);
-    // strcpy(result, u8x8_u8toa(g, 2));
-    // //strcpy(m_str, u8x8_u8toa(m, 2));		/* convert m to a string with two digits */
+    snprintf(f_str, sizeof(f_str), "%g", *f); /* convert m to a string with two digits */
+
     u8g2.firstPage();
     do {
 
-      u8g2.setFont(u8g2_font_logisoso32_tn);
-      u8g2.drawStr(0,63,f_str);
+      //u8g2.setFont(u8g2_font_logisoso32_tn);
 
-      //u8g2.drawStr(0,63,"18");
-      //u8g2.drawStr(42,63,":");
-      //u8g2.drawStr(53,63,m_str);
-      //u8g2.setFont(u8g2_font_logisoso18_tn);
-      //u8g2.drawStr(0,25,"time!");
+      u8g2.setFont(u8g2_font_courB18_tf); //15px height
+      u8g2.drawStr(0,32,"Temp:");
+      u8g2.drawStr(20,63,f_str);
+      u8g2.drawStr(100,63,"c");
+
     } while ( u8g2.nextPage() );
-    m++;
-    if ( m == 60 )
-      m = 0;
+
 }
 
-void oled_begin() {
+void oled_display(const char* title, const char* message, const char* units){
+
+    u8g2.firstPage();
+    do {
+        u8g2.setFont(u8g2_font_courB18_tf); //15px height
+        u8g2.drawStr(0,32,title);
+        u8g2.drawStr(20,63,message);
+        u8g2.drawStr(100,63,units);
+    } while ( u8g2.nextPage() );
+}
+
+void oled_setup() {
     u8g2.begin();
 }
+
+/*
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this list
+  of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice, this
+  list of conditions and the following disclaimer in the documentation and/or other
+  materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+*/
