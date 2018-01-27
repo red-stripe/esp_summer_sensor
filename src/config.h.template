@@ -1,0 +1,17 @@
+// config
+
+#define WIFI_SSID "wireless ap name"
+#define WIFI_PASSWORD "wireless password"
+#define NODE_NAME "sensor-name"
+
+#define MQTT_SERVER "127.0.0.1"
+#define MQTT_USER "mqttuser"
+#define MQTT_PASSWORD "mqttpassword"
+#define MQTT_NAME "mqtt-node-name"
+#define MQTT_PORT 1883
+
+#define topic_temperature "topic/temperature"
+#define topic_humid "topic/humidity"
+
+#define hdc1080Addr 0x40
+#define ssd1306Addr 0x3C
