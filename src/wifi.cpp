@@ -1,5 +1,6 @@
 #include "wifi.h"
 #include "config.h"
+#include "oled.h"
 
 /*
 Hacked from: https://github.com/platformio/platformio-examples.git
@@ -12,7 +13,9 @@ void wifi_setup() {
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD); //connect to AP
   while (WiFi.waitForConnectResult() != WL_CONNECTED) {
     Serial.println("Connection Failed! Rebooting...");
+    oled_display("WIFI:","Error","1");
     delay(5000);
+    oled_display("Rebooting:","ESP","_");
     ESP.restart();
   }
 }

@@ -8,6 +8,7 @@ See notice at end of file.
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
 #include "config.h"
+#include "oled.h"
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -43,8 +44,12 @@ void mqtt_reconnect() {
       Serial.print("failed, rc=");
       Serial.print(client.state());
       Serial.println(" try again in 5 seconds");
+      oled_display("MQTT:","Error","1");
+
       // Wait 5 seconds before retrying
       delay(5000);
+      oled_display("Retrying:","MQTT","_");
+      //TODO: Add a timeout on MQTT retry to check wifi connection is present
     }
   }
 }
