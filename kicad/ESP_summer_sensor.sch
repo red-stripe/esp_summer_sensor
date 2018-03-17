@@ -58,6 +58,7 @@ LIBS:SparkFun-RF
 LIBS:SparkFun-Sensors
 LIBS:SparkFun-Switches
 LIBS:fab
+LIBS:ESP_summer_sensor-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
@@ -65,12 +66,12 @@ encoding utf-8
 Sheet 1 1
 Title ""
 Date "2018-03-04"
-Rev "00.00.1"
+Rev "00.00.2"
 Comp ""
 Comment1 ""
 Comment2 ""
 Comment3 ""
-Comment4 ""
+Comment4 "WIP: Schematic is untested 18/03/18 "
 $EndDescr
 $Comp
 L ESP-12E U3
@@ -78,8 +79,8 @@ U 1 1 5A58513B
 P 3900 3500
 F 0 "U3" H 3900 3400 50  0000 C CNN
 F 1 "ESP-12E" H 3900 3600 50  0000 C CNN
-F 2 "" H 3900 3500 50  0001 C CNN
-F 3 "" H 3900 3500 50  0001 C CNN
+F 2 "ESP8266:ESP-12E" H 3900 3500 50  0001 C CNN
+F 3 "http://www.kloppenborg.net/images/blog/esp8266/esp8266-esp12e-specs.pdf" H 3900 3500 50  0001 C CNN
 	1    3900 3500
 	1    0    0    -1  
 $EndComp
@@ -89,7 +90,7 @@ U 1 1 5A58520A
 P 5050 3800
 F 0 "R4" V 5130 3800 50  0000 C CNN
 F 1 "R" V 5050 3800 50  0000 C CNN
-F 2 "" V 4980 3800 50  0001 C CNN
+F 2 "Resistors_SMD:R_1206_HandSoldering" V 4980 3800 50  0001 C CNN
 F 3 "" H 5050 3800 50  0001 C CNN
 	1    5050 3800
 	0    1    1    0   
@@ -122,7 +123,7 @@ U 1 1 5A58534B
 P 6550 1150
 F 0 "J6" H 6550 1450 50  0000 C CNN
 F 1 "Conn_01x06" H 6550 750 50  0000 C CNN
-F 2 "" H 6550 1150 50  0001 C CNN
+F 2 "Connectors_Sparkfun:1X06-SMD_RA_MALE" H 6550 1150 50  0001 C CNN
 F 3 "" H 6550 1150 50  0001 C CNN
 	1    6550 1150
 	1    0    0    -1  
@@ -133,7 +134,7 @@ U 1 1 5A5855B9
 P 2300 3350
 F 0 "R1" V 2380 3350 50  0000 C CNN
 F 1 "R" V 2300 3350 50  0000 C CNN
-F 2 "" V 2230 3350 50  0001 C CNN
+F 2 "Resistors_SMD:R_1206_HandSoldering" V 2230 3350 50  0001 C CNN
 F 3 "" H 2300 3350 50  0001 C CNN
 	1    2300 3350
 	1    0    0    -1  
@@ -144,7 +145,7 @@ U 1 1 5A585652
 P 2400 3550
 F 0 "R2" V 2480 3550 50  0000 C CNN
 F 1 "R" V 2400 3550 50  0000 C CNN
-F 2 "" V 2330 3550 50  0001 C CNN
+F 2 "Resistors_SMD:R_1206_HandSoldering" V 2330 3550 50  0001 C CNN
 F 3 "" H 2400 3550 50  0001 C CNN
 	1    2400 3550
 	1    0    0    -1  
@@ -155,9 +156,9 @@ U 1 1 5A5857A1
 P 2700 2850
 F 0 "S1" H 2450 2900 45  0000 L BNN
 F 1 "Reset Switch" H 2400 3200 45  0000 L BNN
-F 2 "TACTILE_SWITCH_SMD_4.6X2.8MM" H 2700 3100 20  0001 C CNN
-F 3 "" H 2700 2850 50  0001 C CNN
-F 4 "SWCH-13065" H 2700 3150 60  0000 C CNN "Field4"
+F 2 "fab:fab-6MM_SWITCH" H 2700 3100 20  0001 C CNN
+F 3 "http://omronfs.omron.com/en_US/ecb/products/pdf/en-b3sn.pdf" H 2700 2850 50  0001 C CNN
+F 4 "B3SN-3112P" H 2700 3150 60  0000 C CNN "Field4"
 	1    2700 2850
 	1    0    0    -1  
 $EndComp
@@ -167,9 +168,9 @@ U 1 1 5A5857F4
 P 5400 3800
 F 0 "S2" H 5400 3700 50  0000 C CNN
 F 1 "Program Mode" H 5400 3900 50  0000 C CNN
-F 2 "" H 5400 3800 50  0001 C CNN
-F 3 "" H 5400 3800 50  0001 C CNN
-F 4 "PRT-13888" H 5400 3600 50  0001 C CNN "Field4"
+F 2 "fab:fab-SPDTSWITCH" H 5400 3800 50  0001 C CNN
+F 3 "https://www.ckswitches.com/media/1431/ayz.pdf" H 5400 3800 50  0001 C CNN
+F 4 "AYZ0102AGRLC" H 5400 3997 50  0000 C CNN "Field4"
 	1    5400 3800
 	0    1    1    0   
 $EndComp
@@ -179,7 +180,7 @@ U 1 1 5A5859C0
 P 5300 3400
 F 0 "R5" V 5380 3400 50  0000 C CNN
 F 1 "R" V 5300 3400 50  0000 C CNN
-F 2 "" V 5230 3400 50  0001 C CNN
+F 2 "Resistors_SMD:R_1206_HandSoldering" V 5230 3400 50  0001 C CNN
 F 3 "" H 5300 3400 50  0001 C CNN
 	1    5300 3400
 	1    0    0    -1  
@@ -217,7 +218,7 @@ RXI
 Text Label 6200 1450 0    60   ~ 0
 DTR
 Text Label 6100 1150 0    60   ~ 0
-+3.3V
++3V3
 Text Label 4950 3500 2    60   ~ 0
 SDA
 Text Label 4950 3400 2    60   ~ 0
@@ -243,7 +244,7 @@ U 1 1 5A65481D
 P 2750 1450
 F 0 "R3" V 2830 1450 50  0000 C CNN
 F 1 "R" V 2750 1450 50  0000 C CNN
-F 2 "" V 2680 1450 50  0001 C CNN
+F 2 "Resistors_SMD:R_1206_HandSoldering" V 2680 1450 50  0001 C CNN
 F 3 "" H 2750 1450 50  0001 C CNN
 	1    2750 1450
 	1    0    0    -1  
@@ -386,7 +387,7 @@ U 1 1 5A65595C
 P 4000 1150
 F 0 "J4" H 4000 1350 50  0000 C CNN
 F 1 "Conn_01x04" H 4000 850 50  0000 C CNN
-F 2 "" H 4000 1150 50  0001 C CNN
+F 2 "Connectors_Sparkfun:1X04" H 4000 1150 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/hdc1080.pdf" H 4000 1150 50  0001 C CNN
 	1    4000 1150
 	1    0    0    -1  
@@ -398,7 +399,7 @@ SDA
 Text Label 3650 1050 0    60   ~ 0
 GND
 Text Label 3550 1350 0    60   ~ 0
-+3.3V
++3V3
 Wire Wire Line
 	3550 1350 3800 1350
 Wire Wire Line
@@ -413,7 +414,7 @@ U 1 1 5A655994
 P 5300 1150
 F 0 "J5" H 5300 1350 50  0000 C CNN
 F 1 "Conn_01x04" H 5300 850 50  0000 C CNN
-F 2 "" H 5300 1150 50  0001 C CNN
+F 2 "Connectors_Sparkfun:1X04" H 5300 1150 50  0001 C CNN
 F 3 "https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf" H 5300 1150 50  0001 C CNN
 	1    5300 1150
 	1    0    0    -1  
@@ -460,7 +461,7 @@ U 1 1 5A9B2130
 P 1350 2100
 F 0 "U2" H 1200 2225 50  0000 C CNN
 F 1 "MIC39100-3.3_SOT223" H 950 1500 50  0000 L CNN
-F 2 "TO_SOT_Packages_SMD:SOT-223-3Lead_TabPin2" H 1350 2325 50  0001 C CIN
+F 2 "TO_SOT_Packages_SMD:SOT-223-3_TabPin2" H 1350 2325 50  0001 C CIN
 F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/20005834A.pdf" H 1350 2050 50  0001 C CNN
 	1    1350 2100
 	1    0    0    -1  
@@ -471,7 +472,7 @@ U 1 1 5A9B2208
 P 1750 2450
 F 0 "C2" H 1600 2550 45  0000 L BNN
 F 1 "10uF" H 1600 2300 45  0000 L BNN
-F 2 "fab_C1206" H 1780 2600 20  0001 C CNN
+F 2 "Capacitors_SMD:C_1206_HandSoldering" H 1780 2600 20  0001 C CNN
 F 3 "" H 1750 2450 60  0001 C CNN
 	1    1750 2450
 	0    1    1    0   
@@ -528,8 +529,8 @@ U 1 1 5A9B3279
 P 1200 3900
 F 0 "J1" H 1100 4094 45  0000 L BNN
 F 1 "JACK2.1MM" H 1200 3900 45  0001 L BNN
-F 2 "fab_JACK_2.1MM" H 1230 4050 20  0001 C CNN
-F 3 "" H 1200 3900 60  0001 C CNN
+F 2 "fab:fab-JACK_2.1MM" H 1230 4050 20  0001 C CNN
+F 3 "https://www.cui.com/product/resource/pj-002ah-smt-tr.pdf" H 1200 3900 60  0001 C CNN
 	1    1200 3900
 	0    1    1    0   
 $EndComp
@@ -543,7 +544,7 @@ U 1 1 5A9B3670
 P 1000 2450
 F 0 "C1" H 850 2550 45  0000 L BNN
 F 1 "1uF" H 850 2300 45  0000 L BNN
-F 2 "fab_C1206" H 1030 2600 20  0001 C CNN
+F 2 "Capacitors_SMD:C_1206_HandSoldering" H 1030 2600 20  0001 C CNN
 F 3 "" H 1000 2450 60  0001 C CNN
 	1    1000 2450
 	0    1    1    0   
@@ -592,7 +593,7 @@ U 1 1 5A9B4281
 P 2500 1100
 F 0 "J3" H 2400 1325 45  0000 L BNN
 F 1 "TERM-1X02-FABLAB" H 2500 1100 45  0001 L BNN
-F 2 "fab_ED555DS-2DS" H 2530 1250 20  0001 C CNN
+F 2 "fab:fab-ED555DS-2DS" H 2530 1250 20  0001 C CNN
 F 3 "http://www.on-shore.com/wp-content/uploads/2015/09/ed555ds.pdf" H 2500 1100 60  0001 C CNN
 	1    2500 1100
 	-1   0    0    1   
@@ -617,7 +618,7 @@ SDA
 Text Label 4950 1150 0    60   ~ 0
 SCL
 Text Label 4850 1250 0    60   ~ 0
-+3.3V
++3V3
 Text Label 4900 1350 0    60   ~ 0
 GND
 NoConn ~ 1300 4100
@@ -657,4 +658,14 @@ F 3 "" H 1700 3750 50  0001 C CNN
 	1    1700 3750
 	-1   0    0    1   
 $EndComp
+Wire Notes Line
+	2050 600  2050 1600
+Wire Notes Line
+	2050 1600 650  1600
+Wire Notes Line
+	650  1600 650  600 
+Wire Notes Line
+	650  600  2050 600 
+Text Notes 1950 750  2    39   ~ 0
+[External]
 $EndSCHEMATC
