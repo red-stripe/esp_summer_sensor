@@ -89,7 +89,7 @@ L R R4
 U 1 1 5A58520A
 P 5050 3800
 F 0 "R4" V 5130 3800 50  0000 C CNN
-F 1 "R" V 5050 3800 50  0000 C CNN
+F 1 "10K" V 5050 3800 50  0000 C CNN
 F 2 "Resistors_SMD:R_1206_HandSoldering" V 4980 3800 50  0001 C CNN
 F 3 "" H 5050 3800 50  0001 C CNN
 	1    5050 3800
@@ -133,7 +133,7 @@ L R R1
 U 1 1 5A5855B9
 P 2300 3350
 F 0 "R1" V 2380 3350 50  0000 C CNN
-F 1 "R" V 2300 3350 50  0000 C CNN
+F 1 "10K" V 2300 3350 50  0000 C CNN
 F 2 "Resistors_SMD:R_1206_HandSoldering" V 2230 3350 50  0001 C CNN
 F 3 "" H 2300 3350 50  0001 C CNN
 	1    2300 3350
@@ -144,7 +144,7 @@ L R R2
 U 1 1 5A585652
 P 2400 3550
 F 0 "R2" V 2480 3550 50  0000 C CNN
-F 1 "R" V 2400 3550 50  0000 C CNN
+F 1 "10K" V 2400 3550 50  0000 C CNN
 F 2 "Resistors_SMD:R_1206_HandSoldering" V 2330 3550 50  0001 C CNN
 F 3 "" H 2400 3550 50  0001 C CNN
 	1    2400 3550
@@ -163,23 +163,11 @@ F 4 "B3SN-3112P" H 2700 3150 60  0000 C CNN "Field4"
 	1    0    0    -1  
 $EndComp
 $Comp
-L SWITCH_TOGGLE_SPST_RIGHT_ANGLE S2
-U 1 1 5A5857F4
-P 5400 3800
-F 0 "S2" H 5400 3700 50  0000 C CNN
-F 1 "Program Mode" H 5400 3900 50  0000 C CNN
-F 2 "fab:fab-SPDTSWITCH" H 5400 3800 50  0001 C CNN
-F 3 "https://www.ckswitches.com/media/1431/ayz.pdf" H 5400 3800 50  0001 C CNN
-F 4 "AYZ0102AGRLC" H 5400 3997 50  0000 C CNN "Field4"
-	1    5400 3800
-	0    1    1    0   
-$EndComp
-$Comp
 L R R5
 U 1 1 5A5859C0
 P 5300 3400
 F 0 "R5" V 5380 3400 50  0000 C CNN
-F 1 "R" V 5300 3400 50  0000 C CNN
+F 1 "10K" V 5300 3400 50  0000 C CNN
 F 2 "Resistors_SMD:R_1206_HandSoldering" V 5230 3400 50  0001 C CNN
 F 3 "" H 5300 3400 50  0001 C CNN
 	1    5300 3400
@@ -260,77 +248,6 @@ F 3 "" H 2750 1700 50  0001 C CNN
 	1    2750 1700
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	2200 3900 3000 3900
-Wire Wire Line
-	2200 3900 2200 3000
-Wire Wire Line
-	4800 3900 5250 3900
-Wire Wire Line
-	5250 3800 5250 4100
-Wire Wire Line
-	2300 3200 3000 3200
-Wire Wire Line
-	2400 2950 2400 3200
-Connection ~ 2400 3200
-Wire Wire Line
-	2300 3500 2300 3900
-Connection ~ 2300 3900
-Wire Wire Line
-	2400 3400 3000 3400
-Wire Wire Line
-	2400 3700 2400 3900
-Connection ~ 2400 3900
-Wire Wire Line
-	4800 3800 4900 3800
-Wire Wire Line
-	5200 3800 5250 3800
-Connection ~ 5250 3900
-Wire Wire Line
-	2400 2950 2500 2950
-Wire Wire Line
-	2900 2950 3000 2950
-Wire Wire Line
-	3000 2950 3000 3000
-Wire Wire Line
-	5300 3600 5300 3550
-Wire Wire Line
-	5300 3250 5300 3150
-Wire Wire Line
-	4800 3600 5400 3600
-Connection ~ 5300 3600
-Wire Wire Line
-	5400 4000 5400 4050
-Wire Wire Line
-	5400 4050 5250 4050
-Connection ~ 5250 4050
-Wire Wire Line
-	6350 1450 6200 1450
-Wire Wire Line
-	6350 1350 6200 1350
-Wire Wire Line
-	6350 1250 6200 1250
-Wire Wire Line
-	6100 1150 6350 1150
-Wire Wire Line
-	6350 1050 6200 1050
-Wire Wire Line
-	6350 950  6200 950 
-Wire Wire Line
-	4800 3400 4950 3400
-Wire Wire Line
-	4800 3500 4950 3500
-Wire Wire Line
-	4800 3300 5100 3300
-Wire Wire Line
-	4800 3200 5000 3200
-Wire Wire Line
-	2500 1200 2900 1200
-Wire Wire Line
-	2750 1200 2750 1300
-Connection ~ 2750 1200
-Wire Wire Line
-	2750 1700 2750 1600
 $Comp
 L +3.3V #PWR06
 U 1 1 5A654BF8
@@ -342,11 +259,9 @@ F 3 "" H 2750 950 50  0001 C CNN
 	1    2750 950 
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	3000 3600 2800 3600
 Text Label 2800 3600 0    60   ~ 0
 Pulse
-Text Label 2900 1200 2    60   ~ 0
+Text Label 2600 1200 2    60   ~ 0
 Pulse
 $Comp
 L Conn_01x02 J2
@@ -359,26 +274,6 @@ F 3 "" H 1800 1100 50  0001 C CNN
 	1    1800 1100
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	1450 1100 1600 1100
-Wire Wire Line
-	1450 1300 1500 1300
-Wire Wire Line
-	1500 1300 1500 1200
-Wire Wire Line
-	1500 1200 1600 1200
-Wire Wire Line
-	2750 1100 2500 1100
-Wire Wire Line
-	2750 950  2750 1100
-Wire Notes Line
-	2000 650  2000 1550
-Wire Notes Line
-	2000 1550 700  1550
-Wire Notes Line
-	700  1550 700  650 
-Wire Notes Line
-	700  650  2000 650 
 Text Notes 1600 750  2    60   ~ 0
 Pulse meter circuit
 $Comp
@@ -400,14 +295,6 @@ Text Label 3650 1050 0    60   ~ 0
 GND
 Text Label 3550 1350 0    60   ~ 0
 +3V3
-Wire Wire Line
-	3550 1350 3800 1350
-Wire Wire Line
-	3800 1250 3650 1250
-Wire Wire Line
-	3800 1150 3650 1150
-Wire Wire Line
-	3800 1050 3650 1050
 $Comp
 L Conn_01x04 J5
 U 1 1 5A655994
@@ -419,40 +306,10 @@ F 3 "https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf" H 5300 1150 50  0001 
 	1    5300 1150
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	4900 1350 5100 1350
-Wire Wire Line
-	5100 1250 4850 1250
-Wire Wire Line
-	5100 1150 4950 1150
-Wire Notes Line
-	3500 1550 3500 750 
-Wire Notes Line
-	3500 750  4350 750 
-Wire Notes Line
-	4350 750  4350 1550
-Wire Notes Line
-	4350 1550 3500 1550
 Text Notes 3550 850  0    60   ~ 0
 HDC1080
-Wire Notes Line
-	4800 1550 4800 750 
-Wire Notes Line
-	4800 750  5650 750 
-Wire Notes Line
-	5650 750  5650 1550
-Wire Notes Line
-	5650 1550 4800 1550
 Text Notes 4850 850  0    60   ~ 0
 SSD1306
-Wire Notes Line
-	6000 750  6000 1600
-Wire Notes Line
-	6000 1600 6800 1600
-Wire Notes Line
-	6800 1600 6800 750 
-Wire Notes Line
-	6800 750  6000 750 
 Text Notes 6050 850  0    60   ~ 0
 FTDI
 $Comp
@@ -477,17 +334,6 @@ F 3 "" H 1750 2450 60  0001 C CNN
 	1    1750 2450
 	0    1    1    0   
 $EndComp
-Wire Wire Line
-	1650 2100 1750 2100
-Wire Wire Line
-	1750 2050 1750 2250
-Connection ~ 1750 2100
-Wire Wire Line
-	1750 2650 1750 2550
-Wire Wire Line
-	1350 2400 1350 2750
-Wire Wire Line
-	1050 2100 1000 2100
 $Comp
 L GND #PWR07
 U 1 1 5A9B2659
@@ -534,10 +380,6 @@ F 3 "https://www.cui.com/product/resource/pj-002ah-smt-tr.pdf" H 1200 3900 60  0
 	1    1200 3900
 	0    1    1    0   
 $EndComp
-Wire Wire Line
-	1000 2650 1750 2650
-Connection ~ 1350 2650
-Connection ~ 1000 2100
 $Comp
 L CAP-UNPOLARIZED C1
 U 1 1 5A9B3670
@@ -549,14 +391,6 @@ F 3 "" H 1000 2450 60  0001 C CNN
 	1    1000 2450
 	0    1    1    0   
 $EndComp
-Wire Wire Line
-	1000 2050 1000 2250
-Wire Wire Line
-	1000 2550 1000 2650
-Wire Wire Line
-	1100 4100 1100 4200
-Wire Wire Line
-	1300 3700 1300 3600
 $Comp
 L GND #PWR010
 U 1 1 5A9B3C8D
@@ -579,24 +413,16 @@ F 3 "" H 1300 3600 60  0001 C CNN
 	1    1300 3600
 	1    0    0    -1  
 $EndComp
-Wire Notes Line
-	2000 1700 700  1700
-Wire Notes Line
-	700  1700 700  3000
-Wire Notes Line
-	700  3000 2000 3000
-Wire Notes Line
-	2000 3000 2000 1700
 $Comp
 L TERM-1X02-FABLAB J3
 U 1 1 5A9B4281
-P 2500 1100
-F 0 "J3" H 2400 1325 45  0000 L BNN
-F 1 "TERM-1X02-FABLAB" H 2500 1100 45  0001 L BNN
-F 2 "fab:fab-ED555DS-2DS" H 2530 1250 20  0001 C CNN
-F 3 "http://www.on-shore.com/wp-content/uploads/2015/09/ed555ds.pdf" H 2500 1100 60  0001 C CNN
-	1    2500 1100
-	-1   0    0    1   
+P 3050 1200
+F 0 "J3" H 2950 1425 45  0000 L BNN
+F 1 "TERM-1X02-FABLAB" H 3050 1200 45  0001 L BNN
+F 2 "fab:fab-ED555DS-2DS" H 3080 1350 20  0001 C CNN
+F 3 "http://www.on-shore.com/wp-content/uploads/2015/09/ed555ds.pdf" H 3050 1200 60  0001 C CNN
+	1    3050 1200
+	1    0    0    -1  
 $EndComp
 $Comp
 L VIN #SUPPLY012
@@ -609,10 +435,6 @@ F 3 "" H 1700 3650 60  0001 C CNN
 	1    1700 3650
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	1700 3650 1700 3750
-Wire Wire Line
-	5100 1050 4950 1050
 Text Label 4950 1050 0    60   ~ 0
 SDA
 Text Label 4950 1150 0    60   ~ 0
@@ -637,10 +459,6 @@ NoConn ~ 6200 1050
 NoConn ~ 6200 1450
 NoConn ~ 850  1100
 NoConn ~ 850  1300
-Wire Wire Line
-	5000 3200 5000 2900
-Wire Wire Line
-	5100 3300 5100 2900
 Text Label 5000 2900 3    60   ~ 0
 RXI
 Text Label 5100 2900 3    60   ~ 0
@@ -658,6 +476,181 @@ F 3 "" H 1700 3750 50  0001 C CNN
 	1    1700 3750
 	-1   0    0    1   
 $EndComp
+Text Notes 1950 750  2    39   ~ 0
+[External]
+$Comp
+L SPDTSWITCH M1
+U 1 1 5ACD3AD7
+P 5500 3600
+F 0 "M1" H 5200 3905 45  0000 L BNN
+F 1 "SPDTSWITCH" H 5200 3230 45  0000 L BNN
+F 2 "fab:fab-AYZ0102AGRLC" H 5530 3750 20  0001 C CNN
+F 3 "https://www.ckswitches.com/media/1431/ayz.pdf" H 5500 3600 60  0001 C CNN
+	1    5500 3600
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	2200 3900 3000 3900
+Wire Wire Line
+	2200 3900 2200 3000
+Wire Wire Line
+	4800 3900 5250 3900
+Wire Wire Line
+	5250 3800 5250 4100
+Wire Wire Line
+	2300 3200 3000 3200
+Wire Wire Line
+	2400 2950 2400 3200
+Connection ~ 2400 3200
+Wire Wire Line
+	2300 3500 2300 3900
+Connection ~ 2300 3900
+Wire Wire Line
+	2400 3400 3000 3400
+Wire Wire Line
+	2400 3700 2400 3900
+Connection ~ 2400 3900
+Wire Wire Line
+	4800 3800 4900 3800
+Wire Wire Line
+	5200 3800 5250 3800
+Connection ~ 5250 3900
+Wire Wire Line
+	2400 2950 2500 2950
+Wire Wire Line
+	2900 2950 3000 2950
+Wire Wire Line
+	3000 2950 3000 3000
+Wire Wire Line
+	5300 3600 5300 3550
+Wire Wire Line
+	5300 3250 5300 3150
+Connection ~ 5300 3600
+Wire Wire Line
+	5250 4050 5450 4050
+Connection ~ 5250 4050
+Wire Wire Line
+	6350 1450 6200 1450
+Wire Wire Line
+	6350 1350 6200 1350
+Wire Wire Line
+	6350 1250 6200 1250
+Wire Wire Line
+	6100 1150 6350 1150
+Wire Wire Line
+	6350 1050 6200 1050
+Wire Wire Line
+	6350 950  6200 950 
+Wire Wire Line
+	4800 3400 4950 3400
+Wire Wire Line
+	4800 3500 4950 3500
+Wire Wire Line
+	4800 3300 5100 3300
+Wire Wire Line
+	4800 3200 5000 3200
+Wire Wire Line
+	2750 1200 2750 1300
+Connection ~ 2750 1200
+Wire Wire Line
+	2750 1700 2750 1600
+Wire Wire Line
+	3000 3600 2800 3600
+Wire Wire Line
+	1450 1100 1600 1100
+Wire Wire Line
+	1450 1300 1500 1300
+Wire Wire Line
+	1500 1300 1500 1200
+Wire Wire Line
+	1500 1200 1600 1200
+Wire Wire Line
+	2750 950  2750 1100
+Wire Notes Line
+	2000 650  2000 1550
+Wire Notes Line
+	2000 1550 700  1550
+Wire Notes Line
+	700  1550 700  650 
+Wire Notes Line
+	700  650  2000 650 
+Wire Wire Line
+	3550 1350 3800 1350
+Wire Wire Line
+	3800 1250 3650 1250
+Wire Wire Line
+	3800 1150 3650 1150
+Wire Wire Line
+	3800 1050 3650 1050
+Wire Wire Line
+	4900 1350 5100 1350
+Wire Wire Line
+	5100 1250 4850 1250
+Wire Wire Line
+	5100 1150 4950 1150
+Wire Notes Line
+	3500 1550 3500 750 
+Wire Notes Line
+	3500 750  4350 750 
+Wire Notes Line
+	4350 750  4350 1550
+Wire Notes Line
+	4350 1550 3500 1550
+Wire Notes Line
+	4800 1550 4800 750 
+Wire Notes Line
+	4800 750  5650 750 
+Wire Notes Line
+	5650 750  5650 1550
+Wire Notes Line
+	5650 1550 4800 1550
+Wire Notes Line
+	6000 750  6000 1600
+Wire Notes Line
+	6000 1600 6800 1600
+Wire Notes Line
+	6800 1600 6800 750 
+Wire Notes Line
+	6800 750  6000 750 
+Wire Wire Line
+	1650 2100 1750 2100
+Wire Wire Line
+	1750 2050 1750 2250
+Connection ~ 1750 2100
+Wire Wire Line
+	1750 2650 1750 2550
+Wire Wire Line
+	1350 2400 1350 2750
+Wire Wire Line
+	1050 2100 1000 2100
+Wire Wire Line
+	1000 2650 1750 2650
+Connection ~ 1350 2650
+Connection ~ 1000 2100
+Wire Wire Line
+	1000 2050 1000 2250
+Wire Wire Line
+	1000 2550 1000 2650
+Wire Wire Line
+	1100 4100 1100 4200
+Wire Wire Line
+	1300 3700 1300 3600
+Wire Notes Line
+	2000 1700 700  1700
+Wire Notes Line
+	700  1700 700  3000
+Wire Notes Line
+	700  3000 2000 3000
+Wire Notes Line
+	2000 3000 2000 1700
+Wire Wire Line
+	1700 3650 1700 3750
+Wire Wire Line
+	5100 1050 4950 1050
+Wire Wire Line
+	5000 3200 5000 2900
+Wire Wire Line
+	5100 3300 5100 2900
 Wire Notes Line
 	2050 600  2050 1600
 Wire Notes Line
@@ -666,6 +659,14 @@ Wire Notes Line
 	650  1600 650  600 
 Wire Notes Line
 	650  600  2050 600 
-Text Notes 1950 750  2    39   ~ 0
-[External]
+Wire Wire Line
+	2600 1200 3050 1200
+Wire Wire Line
+	2750 1100 3050 1100
+Wire Wire Line
+	4800 3600 5500 3600
+Wire Wire Line
+	5500 3800 5450 3800
+Wire Wire Line
+	5450 3800 5450 4050
 $EndSCHEMATC
