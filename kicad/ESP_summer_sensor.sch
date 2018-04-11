@@ -66,7 +66,7 @@ encoding utf-8
 Sheet 1 1
 Title ""
 Date "2018-03-04"
-Rev "00.00.2"
+Rev "00.00.3"
 Comp ""
 Comment1 ""
 Comment2 ""
@@ -669,4 +669,23 @@ Wire Wire Line
 	5500 3800 5450 3800
 Wire Wire Line
 	5450 3800 5450 4050
+$Comp
+L R R6
+U 1 1 5ACD5980
+P 3750 1850
+F 0 "R6" V 3830 1850 50  0000 C CNN
+F 1 "0" V 3750 1850 50  0000 C CNN
+F 2 "Resistors_SMD:R_1206" V 3680 1850 50  0001 C CNN
+F 3 "" H 3750 1850 50  0001 C CNN
+	1    3750 1850
+	0    1    1    0   
+$EndComp
+Text Label 4000 1850 0    60   ~ 0
+SDA
+Text Label 3400 1850 0    60   ~ 0
+SDA
+Wire Wire Line
+	3400 1850 3600 1850
+Wire Wire Line
+	3900 1850 4000 1850
 $EndSCHEMATC
