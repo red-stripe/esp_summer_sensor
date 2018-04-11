@@ -2,12 +2,16 @@
 #include <Wire.h>
 #include <PubSubClient.h>
 #include <U8g2lib.h>
+#include <mdns.h>
 #include "config.h"
 #include "ota.h"
 #include "temperature.h"
 #include "oled.h"
 #include "wifi.h"
 #include "mqtt.h"
+#include "dnslookup.h"
+
+
 
 
 
@@ -15,17 +19,22 @@ const char CompileDate[] = __DATE__ " " __TIME__;
 /* TO DO:-
 ~~oled screen cycle stats~~
 ~~oled screen readable titles~~
-test OTA Update with real PSU
-test ip setup with real PSU
-test wifi setup with real PSU
+~~test OTA Update with real PSU~~
+~~test ip setup with real PSU~~
+~~test wifi setup with real PSU~~
 check temp i2c calls to HDC1080 +
 Actually understand how i2c block works
 ~~Add MQTT~~
 ~~change config.h in git to be a template~~
 ~~use modulars to do a timer for the screen~~
-Refactor pulse code and move to own cpp File
+//TODO:Refactor pulse code and move to own cpp File
 ~~Refactor oled to take a string instead of a double~~
-Refactor termperature code to be more clear, all pointers all the time
+//TODO:Refactor termperature code to be more clear, all pointers all the time
+LD1085 reg
+MIC39100-3.3WS - http://ww1.microchip.com/downloads/en/DeviceDoc/20005834A.pdf
+MIC29310-3.3WU
+https://grafana.com/
+https://www.influxdata.com/
 */
 /*
 
@@ -70,6 +79,7 @@ void setup() {
     oled_setup();
     ota_setup();
     wifi_setup();
+    dns_setup();
     mqtt_setup();
     pinMode(14, INPUT);
     attachInterrupt(14, pulseCounter01, FALLING);
@@ -77,13 +87,16 @@ void setup() {
     Serial.println("Ready");
 
     print_wifi_details();
+
 }
 
 void loop() {
 
     wifi_task();
     ota_task();
-
+    dns_task();
+    Serial.print(dns_lookup(MQTT_SERVERNAME));
+    mqtt_task();
     if (millis() % 2000 == 0) {
 
     double temperature;
@@ -131,8 +144,8 @@ void loop() {
     char humid_str[6];
     snprintf(humid_str, sizeof(humid_str), "%g", humidity);
 
-    mqtt_task(topic_temperature,temp_str);
-    mqtt_task(topic_humid,humid_str);
+    mqtt_publish(topic_temperature,temp_str);
+    mqtt_publish(topic_humid,humid_str);
 
     }
 
