@@ -8,6 +8,7 @@ static PubSubClient mqtt_client(espClient);
 
 void mqtt_setup();
 void mqtt_reconnect();
-void mqtt_task(const char*, const char*);
+void mqtt_publish(const char*, const char*);
+void mqtt_task();
 
 #endif

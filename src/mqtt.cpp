@@ -31,7 +31,7 @@ void mqtt_setup() {
 
 void mqtt_reconnect() {
   // Loop until we're reconnected
-  while (!client.connected()) {
+  if (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
     // Attempt to connect
     if (client.connect(MQTT_NAME, MQTT_USER, MQTT_PASSWORD)) {
@@ -44,7 +44,12 @@ void mqtt_reconnect() {
       Serial.print("failed, rc=");
       Serial.print(client.state());
       Serial.println(" try again in 5 seconds");
-      oled_display("MQTT:","Error","1");
+
+       //TODO: use client.state() error codes
+      char errorCode[4];
+      snprintf(errorCode, sizeof(errorCode), "%d", client.state());
+      oled_display("MQTT:","Error",errorCode);
+
 
       // Wait 5 seconds before retrying
       delay(5000);
@@ -54,12 +59,20 @@ void mqtt_reconnect() {
   }
 }
 
-void mqtt_task(const char* topic, const char* message) {
+void mqtt_task() {
+    if (!client.connected()) { //check for disconnect
+      mqtt_reconnect();
+    }
+    client.loop();
+}
+
+void mqtt_publish(const char* topic, const char* message) {
 
   if (!client.connected()) { //check for disconnect
     mqtt_reconnect();
   }
   client.loop(); // check for incoming messages and keep alive server connection.
+  //TODO: Split mqtt update task and publishing to two seperate functions.
   client.publish(topic, message);
 }
 
