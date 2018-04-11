@@ -17,6 +17,7 @@ void oled_display(const char* title, const char* message, const char* units){
 
     u8g2.firstPage();
     do {
+        u8g2.setFlipMode(1);
         u8g2.setFont(u8g2_font_courB18_tf); //15px height
         u8g2.drawStr(0,32,title);
         u8g2.drawStr(20,63,message);

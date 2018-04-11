@@ -10,6 +10,7 @@ Licensed under the Apache License 2.0
 
 void wifi_setup() {
   WiFi.mode(WIFI_STA); //set to client mode
+  WiFi.hostname(NODE_NAME);
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD); //connect to AP
   while (WiFi.waitForConnectResult() != WL_CONNECTED) {
     Serial.println("Connection Failed! Rebooting...");
